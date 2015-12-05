@@ -1,8 +1,13 @@
+What I've done:
+
 So I have found a way to output only 1 layer ofthe current directory along with size of each directory.
 I will try to add this to a batch script and make it output, then see if I can get values from this.
 
+script:
+
 $ du -h --max-depth=1
 
+Output:
 
 1.0K    ./.android
 324K    ./.eclipse
@@ -11,3 +16,6 @@ $ du -h --max-depth=1
 5.0K    ./.p2
 5.0K    ./.ssh
 380K    ./.VirtualBox
+
+What needs to be done next:
+So I have a lot of the basic output with this! I now need to add this to a script rather than just a command
