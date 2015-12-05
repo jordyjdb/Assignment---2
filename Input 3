@@ -1,1 +1,21 @@
+What I've done:
+Ive managed to output my bash file to a text document, I hope I can use this to do the calculations for the hashes. I could consider using a different programming language to do this? I know it would be easy to do in java but I'm not sure how I'd set an application of with this.
+script:
 
+#i/bin/bash
+echo "Size(MB)  files"
+du -h -m --max-depth=1 "D:\games" > mapped.txt
+
+Output:
+(to a text file)
+519	D:\games/empire_earth_gold_edition
+1642	D:\games/KSP_win
+292	D:\games/my games
+347	D:\games/Nexus Mod Manager
+544	D:\games/star_wars_galactic_battlegrounds_saga
+97	D:\games/Timber and Stone
+137	D:\games/zineth_0_24
+3575	D:\games
+
+What needs to be done next:
+Look into how to manipulate the text file, I may look into using java if neccesary! 
