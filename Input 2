@@ -1,0 +1,21 @@
+So after just using a command I decided to input it into a batch script.
+after some research I found out how to set up such a batch file.
+
+script:
+
+#i/bin/bash
+echo "files"
+
+du -h --max-depth=1
+
+Output:
+
+$ ./Assignment1.sh
+files
+1.0K    ./.android
+324K    ./.eclipse
+47K     ./.git
+1.0K    ./.oracle_jre_usage
+5.0K    ./.p2
+5.0K    ./.ssh
+380K    ./.VirtualBox
