@@ -8,7 +8,9 @@ individual hash size in MB (i) = (total size of directory(T))/(total amount of h
 amount of hashes for a folder in MB(h) = (folder size(s)) \ (individiual hash size in MB(i))
 
 therfore: i = T/t
+
 h = s\i
+
 h = s\(T/t)
 
 an example would be:
