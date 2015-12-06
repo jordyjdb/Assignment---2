@@ -1,4 +1,50 @@
 What I've done:
+
+So I looked further into using a different language to edit the output of the mapped directory and C seems to be the best option. Although I am currenly having running it, so maybe I'll have better luck in a VM or on one of the machines at uni.
+My C program is currently testing the input of a file.
 script:
+
+#i/bin/bash
+echo "Size(MB)  files"
+du -h -m --max-depth=1 "D:\games" > mapped.txt
+./main
+echo "C program is running"
+sleep(2)
+cat mapped.txt
+
+C:
+
+#include <stdio.h>
+
+int main()
+{
+    printf("attempting to read file...");
+    
+    FILE *pToFile = fopen("mapped.txt","r");
+    
+    int line = 0;
+    char input[1000];
+    
+    while( fgets(input, 1000,pToFile)){
+        line++;
+        printf("line:%d -> %s", line, input);
+    }
+    
+    printf("finished reading file!")
+    fclose(pToFile);
+
+    return 0;
+}
+
+
+
 Output:
+(errors)
+./Assignment1.sh: line 4: ./main: cannot execute binary file: Exec format error
+./Assignment1.sh: line 6: syntax error near unexpected token `2'
+./Assignment1.sh: line 6: `sleep(2)'
+
+
 What needs to be done next:
+Edit my C program once finished with testing so that it configures file and outputs back to the file.
+Make my C program work, try VM.
