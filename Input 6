@@ -1,1 +1,86 @@
+What I've done:
+I have now split the lines of the text file into file size and file name, removing the directory. I have also managed to save back to the text file.
 
+Java:
+import java.io.*;
+
+public class Reader {
+
+	public static void main(String[] args) {
+		// file directory
+		String fileName = "C:\\Users\\jordyjdb\\mapped.txt";
+		// Line of file
+		String line = null;
+		//sets array to hold the lines form the text document
+		String[] Lines = new String[512];
+		
+		try {
+			int count = 0;
+			
+			//creates file reader
+			FileReader fileReader = new FileReader(fileName);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			
+			int n = 0;
+			
+			//loops untill end of file
+			while ((line = bufferedReader.readLine()) != null) {
+				//System.out.println(line);
+				Lines[n] = line;
+				//moves to next position in array
+				n++;
+				//keeps track of how many lines in the file
+				count++;
+			}
+			bufferedReader.close();
+			//creates file writer
+			FileWriter fileWriter = new FileWriter(fileName);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			
+			//creates temp lines to split code into
+			String[] tempLine1 = new String[2];
+			String[] tempLine2 = new String[2];
+			
+			n=0;
+			//loops for every line that is a file
+			while (n < (count -2)) {
+				
+				//first split to get the file name from line
+				tempLine1 = Lines[n].split("/",2);
+				//tempLine1[1] = file name
+				System.out.println(tempLine1[1]);
+				//second split to get the size of the file
+				tempLine2 = tempLine1[0].split("	",2);
+				//tempLine2[0] = file size
+				System.out.println(tempLine2[0]);
+				
+				//writes back to file
+				bufferedWriter.write( tempLine2[0]+ " - " + tempLine1[1]);
+	            bufferedWriter.newLine();
+	            n++;
+			}
+			
+			// Always close files.
+			bufferedWriter.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found.");
+		} catch (IOException ex) {
+			System.out.println("Error reading file.");
+		}
+		System.out.println("done!");
+
+	}
+
+}
+Output:
+(text file)
+519 - empire_earth_gold_edition
+1642 - KSP_win
+292 - my games
+347 - Nexus Mod Manager
+544 - star_wars_galactic_battlegrounds_saga
+97 - Timber and Stone
+137 - zineth_0_24
+
+What needs to be done next:
+All that needs to be done for the main requirements is the equation to do the hashes, compile the code, and call the java program from the bash script. 
