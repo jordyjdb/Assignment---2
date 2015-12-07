@@ -1,0 +1,52 @@
+What I've done:
+So after trying and failing to compile the C correctly at home, I decided to go to java which is easier to work with in my opinion and easier to run. Again, I only created a test program to make sure that the java would
+-find the file
+-read the file
+-output back to the file
+With this Java program, it finds and reads the file, however I need to but a bit more effort in to make it write back to the file.
+
+Java:
+import java.io.*;
+
+public class Reader {
+
+	public static void main(String[] args) {
+		//file directory
+		String fileName = "C:\\Users\\jordyjdb\\mapped.txt";
+		//Line of file
+		String line = null;
+		
+		 try {
+			FileReader fileReader = new FileReader(fileName);
+			 BufferedReader bufferedReader = new BufferedReader(fileReader);
+			 while((line = bufferedReader.readLine()) != null) {
+	                System.out.println(line);
+	            }   
+
+	            // Always close files.
+	            bufferedReader.close();    
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found.");
+		}
+		 catch(IOException ex){
+			 System.out.println("Error reading file.");
+		 }
+		
+	}
+
+}
+
+
+Output:
+519	D:\games/empire_earth_gold_edition
+1642	D:\games/KSP_win
+292	D:\games/my games
+347	D:\games/Nexus Mod Manager
+544	D:\games/star_wars_galactic_battlegrounds_saga
+97	D:\games/Timber and Stone
+137	D:\games/zineth_0_24
+3575	D:\games
+3575	total
+
+What needs to be done next:
+I need to give the program the ability to write back to file, I need to also compile the code and then call the program from my bash script.
