@@ -11,7 +11,7 @@ therfore: i = T/t
 
 h = s\i
 
-h = s\(T/t)
+h = s\\(T/t)
 
 an example would be:
 
