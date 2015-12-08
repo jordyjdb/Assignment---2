@@ -1,0 +1,87 @@
+import java.io.*;
+/**Reads from a file, outputted by bash script
+ * 
+ * @author jordyjdb
+ *
+ */
+public class Reader {
+
+	public static void main(String[] args) {
+		// file directory
+		String fileName = "C:\\Users\\jordyjdb\\mapped.txt";
+		// Line of file
+		String line = null;
+		// sets array to hold the lines form the text document
+		String[] Lines = new String[512];
+
+		try {
+			int count = 0;
+
+			// creates file reader
+			FileReader fileReader = new FileReader(fileName);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			int n = 0;
+
+			// loops untill end of file
+			while ((line = bufferedReader.readLine()) != null) {
+				// System.out.println(line);
+				Lines[n] = line;
+				// moves to next position in array
+				n++;
+				// keeps track of how many lines in the file
+				count++;
+			}
+			bufferedReader.close();
+			// creates file writer
+			FileWriter fileWriter = new FileWriter(fileName);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+			// creates temp lines to split code into
+			String[] tempLine1 = new String[2];
+			String[] tempLine2 = new String[2];
+
+			// loops for every line that is a file
+			String[] Sum = Lines[0].split("	", 2);
+			n = 1;
+			// T = total size of directory
+			int T = Integer.parseInt(Sum[0]);
+			// 20 hashes used
+			int i = T / 30;
+
+			while (n < (count)) {
+
+				// first split to get the file name from line
+				tempLine1 = Lines[n].split("/", 2);
+				// tempLine1[1] = file name
+
+				// second split to get the size of the file
+				tempLine2 = tempLine1[0].split("	", 2);
+				// tempLine2[0] = file size
+
+				String HashString = "";
+				// h = amount of hashes for a folder
+				int h = (int) Math.round((Integer.parseInt(tempLine2[0]) / i) - 0.5);
+				for (int H = 0; H < h; H++) {
+					HashString += "#";
+					
+				}
+				
+				// writes back to file
+				bufferedWriter.write(tempLine2[0] + " MB\t [" + HashString
+						+ "\t] " + tempLine1[1]);
+				bufferedWriter.newLine();
+				n++;
+			}
+
+			// Always close files.
+			bufferedWriter.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found.");
+		} catch (IOException ex) {
+			System.out.println("Error reading file.");
+		}
+
+	}
+
+}
