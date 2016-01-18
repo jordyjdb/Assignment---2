@@ -1,3 +1,12 @@
+What I've done:I have now implemeneted my java into my script. This will only work if java has been installed on the computer.
+
+
+
+
+
+
+script:
+
 #!/bin/bash
 DIALOG_CANCEL=1
 DIALOG_ESC=255
@@ -71,3 +80,7 @@ esac
       ;;
   esac
 done
+
+
+What needs to be done next:
+Potentially create a travesal alogrithm instead of 'du'?
