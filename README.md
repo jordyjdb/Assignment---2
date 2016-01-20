@@ -1,30 +1,15 @@
 # Assignment---2
 Using batch script to show files/folders information inside a directory, such as size and name
 
-So the assignemnt wants the me to create a batch script that will show the size of each file inside the directory, followed by the the percentage of the file with recursive directorys. It wants me to do it in the form of hashes, I have determined that the amount of hashes next to each folder depends on this formula:
+So the assignment wants the me to create a batch script that will show each file/folder inside the directory along with the sizes of each and to use a traversing algorithm to do so. I have used dialog to give the user a better GUI, but have also got a basic text command line menu and I/O if dialog is not available on the machine.
 
-individual hash size in MB (i) = (total size of directory(T))/(total amount of hashes used(t))
-
-amount of hashes for a folder in MB(h) = (folder size(s)) \ (individiual hash size in MB(i))
-
-therfore: i = T/t
-
-h = s\i
-
-h = s\\(T/t)
-
-an example would be:
-
-Folder (games) - 975MB
-- (fallout) - 500MB 
-- (mario64) - 300MB
-- (Minecraft) - 100MB
-- (sims 4) - 75MB
-
-for finding out the number of hashes mario64 has:
-
-975/20(number of hashes used) = 48.75
-
-300\48.75 = 6 (no remainder as cant show half a hash)
-
-
+How to set up:
+- create the 4 batch files that have been submitted to Assignment 2
+  - Main.sh
+  - Basic.sh
+  - File.sh
+  - trav.sh
+- Make sure that all files are in the same directory and have the same names as the files have been submitted.
+- Change the executable state of each batch file to true.
+- Run main.sh for automatic selection between dialog GUI and basic Text GUI.
+- 
