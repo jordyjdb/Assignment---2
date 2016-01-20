@@ -24,7 +24,7 @@ while true; do
     --menu "Please select:" $HEIGHT $WIDTH 4 \
     "1" "Directory Selection" \
     "2" "Run search" \
-    "3" "Current DirectFiory" \
+    "3" "Current Directory" \
     2>&1 1>&3)
   exit_status=$?
   exec 3>&-
@@ -80,7 +80,7 @@ esac
 	#display_result "mapped"
       ;;
     3 )
-       tcdialog --title 'test 3' --msgbox mapped.txt 100 50
+       dialog --title 'test 3' --msgbox mapped.txt 100 50
       
       ;;
   esac
