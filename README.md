@@ -5,7 +5,7 @@ So the assignment wants the me to create a batch script that will show each file
 
 Each version of my code and my progress are documented from input, starting from input 1. This shows the trail and error which includes try to use java to edit a text file to make the output more appealing and easier to understand, however I removed it as I found a lot of the time that the java reader wasnt compatible. It also shows my the progression of my Assignment along with my thought process and what I planned to do after each step I took. 
 
-The traversal was the hardest part to implement, which repleaced the temporary use of the du command. 
+The traversal was the hardest part to implement, which replaced the temporary use of the du command. It goes into each directory and does a du inside, giving the total of each file. both files and folders are outputed by the trav.sh and are then outputted to a text file which is then used by either Basic.sh or File.sh. 
 
 How to set up:
 - create the 4 batch files that have been submitted to Assignment 2
