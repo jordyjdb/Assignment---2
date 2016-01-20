@@ -1,0 +1,21 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo Please Choose an option
+#read -e -p "" -i "" OPT
+select yn in "Select a directory" "Run Search" "Current Directory" ; do
+	case $yn in
+		"Select a directory" ) echo "test 1" ;; 
+		"Run Search" ) chmod +rx trav.sh
+	chmod 777 trav.txt
+	$DIR/trav.sh > $DIR/trav.txt
+	
+	#du -h -m --max-depth=1 -h | sort -rn > mapped.txt
+
+	COUNT=$(gawk '{ sum += $3 }; END {print sum }' $DIR/trav.txt)
+	echo "total| " $COUNT >> $DIR/trav.txt
+	cat $DIR/trav.txt
+      	;;
+		"Current Directory" ) ;;
+	esac
+done
