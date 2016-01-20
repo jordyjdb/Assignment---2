@@ -1,3 +1,151 @@
+File.sh : 
+
+#!/bin/bash
+DIALOG_CANCEL=1
+DIALOG_ESC=255
+HEIGHT=0
+WIDTH=0
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+display_result() {
+  dialog --title "$1" \
+    --no-collapse \
+    --msgbox "$result" 0 0
+}
+
+while true; do
+  exec 3>&1
+  selection=$(dialog \
+    --backtitle "System Information" \
+    --title "$PWD" \
+    --clear \
+    --cancel-label "Exit" \
+    --menu "Please select:" $HEIGHT $WIDTH 4 \
+    "1" "Directory Selection" \
+    "2" "Run search" \
+    "3" "Current DirectFiory" \
+    2>&1 1>&3)
+  exit_status=$?
+  exec 3>&-
+  case $exit_status in
+    $DIALOG_CANCEL)
+      clear
+      echo "Program terminated."
+      exit
+      ;;
+    $DIALOG_ESC)
+      clear
+      echo "Program aborted." >&2
+      exit 1
+      ;;
+  esac
+  case $selection in
+    0 )
+      clear
+      echo "Program terminated."
+      ;;
+    1 )
+      DIALOG=${DIALOG=dialog}
+
+FILE=`$DIALOG --stdout --title "Please choose a file" --fselect $PWD/ 14 48`
+
+case $? in
+        0)
+                echo "\"$FILE\" chosen"
+		cd $FILE
+		;;
+        1)
+                echo "Cancel pressed.";;
+        255)
+                echo "Box closed.";;
+esac
+
+      ;;
+    2 )
+
+	echo hello /home/lstudent/trav.txt
+
+	chmod +rx trav.sh
+	chmod 777 trav.txt
+	$DIR/trav.sh > $DIR/trav.txt
+	
+	#du -h -m --max-depth=1 -h | sort -rn > mapped.txt
+
+	#sleep 5 
+	COUNT=$(gawk '{ sum += $3 }; END {print sum }' $DIR/trav.txt)
+	echo "total| " $COUNT >> $DIR/trav.txt
+	dialog --stdout --textbox $DIR/trav.txt 22 70
+      	#result = $( $DIR/trav.txt)
+	#display_result "mapped"
+      ;;
+    3 )
+       tcdialog --title 'test 3' --msgbox mapped.txt 100 50
+      
+      ;;
+  esac
+done
+
+Trav.sh : 
+
+#!/bin/bash
+# Traverse a directory using depth first traversal technique
+# Usage $0 directorypath
+# otherwise it takes current working directory as directory path
+
+depth()
+{
+#Do a small depth checking how deep into the tree we are
+k=0
+while [ $k -lt $1 ]
+do
+echo -n " "
+let k++
+#or use k=`expr $k + 1`
+done
+}
+
+traverse()
+{
+# Traverse a directory
+
+ls "$1" | while read i
+do
+depth $2
+if [ -d "$1/$i" ]
+then
+output=$(du -bs --max-depth=0 --block-size=1KB  "$1/$i")
+echo "dir. | " $output
+# Calling this as a subshell means that when the called
+# function changes directory, it will not affect our
+# current working directory
+# If you call this in current shell it gives the error
+# bash: traverse: No such file or directory after changing
+# the current directory
+else
+
+result=$(du -ab --max-depth=0 --block-size=1KB  "$1/$i")
+echo "file | " $result
+fi
+done
+}
+
+# $1 is directory path
+
+if [ -z "$1" ]
+then
+# Here we are giving '0' is the current depth of direcory
+traverse . 0
+else
+traverse $1 0
+fi
+
+Main.sh : 
+yum -q list installed steam &>/dev/null && ./File.sh || ./Basic.sh
+
+
+Basic.sh : 
+
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
