@@ -1,0 +1,8 @@
+What I have done:
+I have now got a sperate 'Main' batch file that will check to see if dialog has been installed. I will now be able to run seperate code depending on if it installed.
+
+Main.sh : 
+yum -q list installed steam &>/dev/null && ./File.sh || echo "Not installed"
+
+What to do next: 
+I will now create a basic text output that does not use dialog but gives similar output to the dialog one, replacing the text output "Not installed".
